@@ -2,8 +2,7 @@ import { getServerSession } from "next-auth/next";
 import { getUserFromEmail } from "../data/user.data";
 import { getPizzasForUser } from "../data/pizza.data";
 
-export async function getPizzas() {
-  console.log("GET PIZZAS CALLED");
+export async function callGetPizzasForUser() {
   try {
     const session = await getServerSession();
     if (!session || !session.user || !session.user.email)

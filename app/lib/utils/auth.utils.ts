@@ -9,7 +9,7 @@ export async function verifyJwt(bearer: string | null): Promise<User> {
 
   const decoded = jwt.verify(
     token,
-    "insert private key here"
+    process.env.JWT_PRIVATE_KEY
   ) as JwtTokenValues;
 
   return await getUserFromEmail(decoded.email);

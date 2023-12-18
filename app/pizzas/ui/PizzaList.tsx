@@ -1,8 +1,8 @@
-import { getPizzas } from "@/app/lib/actions/pizza.actions";
+import { callGetPizzasForUser } from "@/app/lib/actions/pizza.actions";
 
 export async function PizzaList() {
-  const pizzas = await getPizzas();
-  console.log(pizzas);
+  // const pizzas = await callGetPizzasForUser();
+  // console.log(pizzas);
 
   return (
     <div>
