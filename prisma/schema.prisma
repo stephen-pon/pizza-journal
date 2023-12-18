@@ -17,10 +17,10 @@ model User {
   id       String  @id @default(uuid())
   email    String  @unique
   password String
-  pizzas   pizza[]
+  pizzas   Pizza[]
 }
 
-model pizza {
+model Pizza {
   id          String   @id @default(uuid())
   name        String
   ingredients String[]

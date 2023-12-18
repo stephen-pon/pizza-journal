@@ -27,9 +27,8 @@ export default function Form({ type }: { type: "login" | "register" }) {
               setLoading(false);
               toast.error(error);
             } else {
-              console.log("SLKDFJLKSDJFLSK");
               router.refresh();
-              router.push("/protected");
+              router.push("/pizzas");
             }
           });
         } else {
