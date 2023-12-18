@@ -5,6 +5,9 @@ import { Inter } from "next/font/google";
 import { Toaster } from "react-hot-toast";
 import AuthStatus from "@/components/auth-status";
 import { Suspense } from "react";
+import Navbar from "@/components/navbar";
+import { SessionProvider } from "next-auth/react";
+import { NextAuthProvider } from "@/components/next-auth-provider";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -35,12 +38,14 @@ export default async function RootLayout({
   return (
     <html lang="en">
       <body className={inter.variable}>
-        <Toaster />
-        <Suspense fallback="Loading...">
-          {/* @ts-expect-error Async Server Component */}
-          <AuthStatus />
-        </Suspense>
-        {children}
+        <NextAuthProvider>
+          <Navbar />
+          <Toaster />
+          {/* <Suspense fallback="Loading...">
+            <AuthStatus />
+          </Suspense> */}
+          {children}
+        </NextAuthProvider>
       </body>
     </html>
   );

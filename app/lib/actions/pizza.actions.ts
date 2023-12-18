@@ -1,8 +1,9 @@
 import { getServerSession } from "next-auth/next";
 import { getUserFromEmail } from "../data/user.data";
-import { getPizzasForUser } from "../data/pizza.data";
+import { getPizzasForUser, getPizza } from "../data/pizza.data";
+import { Pizza } from "@prisma/client";
 
-export async function callGetPizzasForUser() {
+export async function callGetPizzasForUser(): Promise<Pizza[] | undefined> {
   try {
     const session = await getServerSession();
     if (!session || !session.user || !session.user.email)
@@ -13,4 +14,8 @@ export async function callGetPizzasForUser() {
   } catch (err) {
     console.log(err);
   }
+}
+
+export async function callGetPizza(id: string): Promise<Pizza> {
+  return getPizza(id);
 }

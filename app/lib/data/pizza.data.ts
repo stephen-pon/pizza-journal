@@ -1,4 +1,4 @@
-import { CreatePizzaBody } from "@/lib/definitions";
+import { CreatePizzaBody, PizzaUpdateBody } from "@/lib/definitions";
 import { prisma } from "../utils/prisma.utils";
 
 export async function getPizzasForUser(userId: string) {
@@ -22,6 +22,31 @@ export async function createPizza(userId: string, pizza: CreatePizzaBody) {
     data: {
       ...pizza,
       userId,
+    },
+  });
+}
+
+export async function getPizza(id: string) {
+  return await prisma.pizza.findFirstOrThrow({
+    where: {
+      id,
+    },
+  });
+}
+
+export async function updatePizza(id: string, data: PizzaUpdateBody) {
+  return await prisma.pizza.update({
+    where: {
+      id,
+    },
+    data,
+  });
+}
+
+export async function deletePizza(id: string) {
+  return await prisma.pizza.delete({
+    where: {
+      id,
     },
   });
 }

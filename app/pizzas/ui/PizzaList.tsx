@@ -1,13 +1,22 @@
 import { callGetPizzasForUser } from "@/app/lib/actions/pizza.actions";
+import PizzaCard from "./PizzaCard";
 
 export async function PizzaList() {
-  // const pizzas = await callGetPizzasForUser();
-  // console.log(pizzas);
+  const pizzas = await callGetPizzasForUser();
+  const pizzaCards = [];
+  if (pizzas && pizzas.length > 0) {
+    for (let p of pizzas) {
+      pizzaCards.push(<PizzaCard pizza={p} />);
+    }
+  }
 
   return (
     <div>
-      <h1>Pizza list is here</h1>
-      <span>Put pizzas here</span>
+      {pizzaCards.length > 0 ? (
+        pizzaCards
+      ) : (
+        <span>You havent added a pizza yet</span>
+      )}
     </div>
   );
 }
