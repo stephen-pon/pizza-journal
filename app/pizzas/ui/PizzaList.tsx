@@ -6,7 +6,7 @@ export async function PizzaList() {
   const pizzaCards = [];
   if (pizzas && pizzas.length > 0) {
     for (let p of pizzas) {
-      pizzaCards.push(<PizzaCard pizza={p} />);
+      pizzaCards.push(<PizzaCard key={p.id} pizza={p} />);
     }
   }
 
